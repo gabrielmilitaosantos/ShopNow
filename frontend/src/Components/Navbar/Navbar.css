@@ -53,19 +53,19 @@
 /* Button Material UI */
 .nav-login-cart button {
     text-transform: none;
-    width: 150px;
+    width: 130px;
     height: 60px;
-    border: 1px solid #7a7a7a;
+    background: #5395ff;
+    border: 1px solid #505050;
     border-radius: 75px;
-    color: #272727;
+    color: #f3f3f3;
     font-size: 22px;
     font-weight: 400;
     font-family: 'Quicksand';
 }
 
 .nav-login-cart button:hover {
-    background: #f3f3f3;
-    border-color: #505050;
+    background: #457acf;
 }
 
 .nav-cart-count {
