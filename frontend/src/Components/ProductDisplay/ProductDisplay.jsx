@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import './ProductDisplay.css';
 import star_icon from '../Assets/star_icon.png';
 import star_dull_icon from '../Assets/star_dull_icon.png';
 import Button from '@mui/material/Button';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { ShopContext } from "../../Context/ShopContext";
 
 function ProductDisplay(props) {
     const { product } = props
+    const {addToCart} = useContext(ShopContext);
 
     return (
         <div className="product-display">
@@ -50,7 +52,7 @@ function ProductDisplay(props) {
                             <div>XXL</div>
                         </div>
                     </div>
-                    <Button variant="contained"><ShoppingCartIcon fontSize="medium" />ADD TO CART</Button>
+                    <Button variant="contained" onClick={() => {addToCart(product.id)}}><ShoppingCartIcon fontSize="medium" />ADD TO CART</Button>
                     <p className="productdisplay-right-category"><span>Category: </span>Women, T-Shirt, Crop Top</p>
                     <p className="productdisplay-right-category"><span>Tags: </span>Modern, Latest</p>
                 </div>
