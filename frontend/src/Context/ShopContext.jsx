@@ -1,12 +1,12 @@
 import React, { createContext, useState } from "react";
-import all_product from '../Components/Assets/all_product';
+import all_products from '../Components/Assets/all_products';
 
 // API Context
 export const ShopContext = createContext(null);
 
 const getDefaultCart = () => {
     let cart = {};
-    for (let index = 0; index < all_product.length + 1; index++) {
+    for (let index = 0; index < all_products.length + 1; index++) {
         cart[index] = 0;            
     }
     return cart;
@@ -21,7 +21,6 @@ const ShopContextProvider = (props) => {
             ...prevValue, 
             [itemId] : prevValue[itemId] + 1
         }));
-        console.log(cartItems);
     }
 
     const removeToCart = (itemId) => {
@@ -31,7 +30,7 @@ const ShopContextProvider = (props) => {
         }));
     }
 
-    const contextValue = {all_product, cartItems, addToCart, removeToCart};
+    const contextValue = {all_products, cartItems, addToCart, removeToCart};
 
     return (
         <ShopContext.Provider value={contextValue}>
