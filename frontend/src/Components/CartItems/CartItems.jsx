@@ -6,7 +6,7 @@ import { IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 
 function CartItems() {
-    const { all_products, cartItems, removeToCart } = useContext(ShopContext);
+    const { all_products, cartItems, removeToCart, getTotalCartAmount } = useContext(ShopContext);
     return (
         <div className="cart-items">
             <div className="cart-items-format-main">
@@ -44,7 +44,7 @@ function CartItems() {
                     <div>
                         <div className="cart-items-total-item">
                             <p>Subtotal</p>
-                            <p>${0}</p>
+                            <p>${getTotalCartAmount()}</p>
                         </div>
                         <hr />
                         <div className="cart-items-total-item">
@@ -54,7 +54,7 @@ function CartItems() {
                         <hr />
                         <div className="cart-items-total-item">
                             <h3>Total</h3>
-                            <h3>${0}</h3>
+                            <h3>${getTotalCartAmount()}</h3>
                         </div>
                     </div>
                     <Button variant="contained">PROCEED TO CHECKOUT</Button>
