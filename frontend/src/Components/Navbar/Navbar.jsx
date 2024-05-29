@@ -1,6 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import './Navbar.css';
 import Button from '@mui/material/Button';
+import { IconButton } from "@mui/material";
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 
 import logo from '../Assets/shopnow_logo.png';
 import cart_icon from '../Assets/cart_icon.png';
@@ -9,7 +11,12 @@ import { ShopContext } from "../../Context/ShopContext";
 
 function Navbar() {
     const [menu, setMenu] = useState("shop");
-    const {getTotalCartItems} = useContext(ShopContext);
+    const { getTotalCartItems } = useContext(ShopContext);
+    const menuRef = useRef();
+
+    const dropdown_toggle = () => {
+        menuRef.current.classList.toggle('nav-menu-visible');
+    }
 
     return (
         <div className="navbar">
@@ -17,7 +24,10 @@ function Navbar() {
                 <img src={logo} alt="logo" width={65} height={65} />
                 <p>ShopNow</p>
             </div>
-            <ul className="nav-menu">
+            <IconButton className="nav-dropdown" onClick={dropdown_toggle}>
+                <MenuRoundedIcon />
+            </IconButton>
+            <ul ref={menuRef} className="nav-menu">
                 <li onClick={() => { setMenu("shop") }}><Link style={{ textDecoration: 'none', color: 'inherit' }} to='/'>Shop</Link> {menu === "shop" && <hr />}</li>
                 <li onClick={() => { setMenu("men") }}><Link style={{ textDecoration: 'none', color: 'inherit' }} to='/mens'>Men</Link> {menu === "men" && <hr />}</li>
                 <li onClick={() => { setMenu("women") }}><Link style={{ textDecoration: 'none', color: 'inherit' }} to='/womens'>Women</Link> {menu === "women" && <hr />}</li>
