@@ -14,7 +14,7 @@
 
 .footer-logo p {
     color: #383838;
-    font-size: 45px;
+    font-size: 3rem;
     font-weight: 400;
 }
 
@@ -28,7 +28,7 @@
     list-style: none;
     gap: 50px;
     color: #252525;
-    font-size: 20px;
+    font-size: 1.3rem;
 }
 
 .footer-links li {
@@ -55,7 +55,7 @@
     width: 100%;
     margin-bottom: 30px;
     color: #1a1a1a;
-    font-size: 18px;
+    font-size: 1.1rem;
 }
 
 .footer-copyright hr {
@@ -64,4 +64,37 @@
     border: none;
     border-radius: 10px;
     background: #bbbbbb;
+}
+
+@media(max-width: 800px) {
+    .footer {
+        gap: 20px;
+    }
+
+    .footer-logo {
+        gap: 10px;
+        align-items: end;
+    }
+
+    .footer-logo img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .footer-logo p {
+        font-size: 1.6rem;
+    }
+
+    .footer-links {
+        font-size: 1rem;
+        gap: 10px;
+    }
+
+    .footer-social-icon img {
+        width: 22px;
+    }
+
+    .footer-copyright {
+        font-size: .9rem;
+    }
 }
