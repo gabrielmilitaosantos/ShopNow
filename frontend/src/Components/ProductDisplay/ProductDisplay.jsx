@@ -52,7 +52,7 @@ function ProductDisplay(props) {
                             <div>XXL</div>
                         </div>
                     </div>
-                    <Button variant="contained" onClick={() => { addToCart(product.id) }}><ShoppingCartIcon fontSize="medium" />ADD TO CART</Button>
+                    <Button variant="contained" onClick={() => { addToCart(product.id) }}><ShoppingCartIcon className="shopping-cart-icon" />ADD TO CART</Button>
                     <p className="productdisplay-right-category"><span>Category: </span>Women, T-Shirt, Crop Top</p>
                     <p className="productdisplay-right-category"><span>Tags: </span>Modern, Latest</p>
                 </div>
