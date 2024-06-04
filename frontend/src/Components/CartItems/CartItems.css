@@ -15,20 +15,22 @@
     gap: 75px;
     padding: 20px 0px;
     color: #353535;
-    font-size: 18px;
+    font-size: 1.12rem;
     font-weight: 600;
 }
 
 .cart-items-format {
-    font-size: 17px;
+    font-size: 1.06rem;
     font-weight: 500;
 }
 
-button.cart-items-quantity {
+.cart-items-quantity {
     width: 64px;
     height: 50px;
     border: 2px solid #ebebeb;
-    color: black;
+    background: white;
+    font-family: 'Quicksand';
+    font-weight: 500;
 }
 
 .cart-icon-product-icon {
@@ -63,14 +65,14 @@ button.cart-items-quantity {
     width: 260px;
     height: 60px;
     font-family: 'Quicksand';
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 600;
     margin-top: 30px;
 }
 
 .cart-items-promocode {
     flex: 1;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 500;
 }
 
@@ -103,8 +105,78 @@ button.cart-items-quantity {
     font-size: 16px;
     background: #303030;
     color: whitesmoke;
+    margin-bottom: 10px;
 }
 
 .cart-item-promobox button:hover {
     background: black;
+}
+
+/* RESPONSIVE CONFIG */
+@media(max-width: 1280px) {
+    .cart-items {
+        margin: 60px 50px;
+    }
+
+    .cart-items-format-main {
+        grid-template-columns: 0.5fr 3fr 0.5fr 0.5fr 0.5fr 0.5fr;
+        gap: 20px;
+        padding: 15px 0px;
+        font-size: 1rem;
+    }
+
+    .cart-icon-product-icon {
+        height: 50px;
+    }
+
+    .cart-items-remove-icon {
+        margin: auto;
+    }
+
+    .cart-items-quantity {
+        width: 40px;
+        height: 30px;
+    }
+
+    .cart-items-down {
+        margin: 80px 0px;
+        flex-direction: column;
+        gap: 80px;
+    }
+
+    .cart-items-total {
+        margin: 0;
+    }
+
+    .cart-items-total button {
+        max-width: 200px;
+        height: 45px;
+        font-size: .8rem;
+    }
+
+    .cart-item-promobox {
+        width: auto;
+        max-width: 500px;
+    }
+
+    .cart-item-promobox input {
+        width: 100%;
+    }
+
+    .cart-item-promobox button {
+        width: 120px;
+        margin-left: -125px;
+    }
+}
+
+@media(max-width: 500px) {
+    .cart-items-format-main {
+        display: none;
+        grid-template-columns: 0.5fr  3fr 0.5fr;
+        gap: 10px;
+    }
+
+    .cart-items-format {
+        display: grid;
+    }
 }
