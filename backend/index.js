@@ -77,8 +77,18 @@ const Product = mongoose.model("Product", {
 });
 
 app.post("/addproduct", async (req, res) => {
-    const product = new Product({
-        id: req.body.id,
+    let products = await Product.find({}); // Find all products from db
+    let id;
+    if (products.length > 0) {
+        let last_product_array = products.slice(-1); // Get the last item
+        let last_product = last_product_array[0]; // Assign the last item in index 0 to a variable
+        id = last_product.id + 1; // Increment new id to last product.
+    }
+    else {
+        id = 1;
+    }
+    const product = new Product({ // Adding the new product to DB Schema
+        id: id,
         name: req.body.name,
         image: req.body.image,
         category: req.body.category,
@@ -91,6 +101,16 @@ app.post("/addproduct", async (req, res) => {
     res.json({
         success: true,
         name: req.body.name,
+    });
+});
+
+// Delete products
+app.post("/removeproduct", async (req, res) => {
+    await Product.findOneAndDelete({ id: req.body.id });
+    console.log("Removed");
+    res.json({
+        success: true,
+        name: req.body.name
     });
 });
 
