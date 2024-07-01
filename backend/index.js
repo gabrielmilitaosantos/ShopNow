@@ -114,6 +114,13 @@ app.post("/removeproduct", async (req, res) => {
     });
 });
 
+// Getting all products
+app.get("/allproducts", async (req, res) => {
+    let products = await Product.find({});
+    console.log("All Products Fetched");
+    res.send(products);
+});
+
 app.listen(port, (err) => {
     if (!err) {
         console.log("Server Running on Port: " + port);
@@ -121,8 +128,4 @@ app.listen(port, (err) => {
     else {
         console.log("Error: " + err);
     }
-});
-
-app.get("/", (req, res) => {
-    res.send("Express working");
 });
