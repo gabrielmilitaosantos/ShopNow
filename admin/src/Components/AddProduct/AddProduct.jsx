@@ -54,6 +54,14 @@ function AddProduct() {
             }).then((resp) => resp.json()).then((data) => {
                 data.success ? alert("Product Added") : alert("Failed to add the product")
             })
+            setProductDetails({
+                name: "",
+                image: "",
+                category: "women",
+                old_price: "",
+                new_price: ""
+            });
+            setImage(false);
         }
     }
 
