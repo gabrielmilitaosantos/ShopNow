@@ -32,8 +32,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Upload Endpoint for images
-app.use('/images', express.static('upload/images'));
-app.post("/upload", upload.single('product'), (req, res) => {
+app.use("/images", express.static("upload/images"));
+app.post("/upload", upload.single("product"), (req, res) => {
     res.json({
         success: 1,
         image_url: `http://localhost:${port}/images/${req.file.filename}`
@@ -119,6 +119,66 @@ app.get("/allproducts", async (req, res) => {
     let products = await Product.find({});
     console.log("All Products Fetched");
     res.send(products);
+});
+
+// Schema creating for User model
+const Users = mongoose.model("Users", {
+    name: {
+        type: String,
+    },
+    email: {
+        type: String,
+        unique: true,
+    },
+    password: {
+        type: String,
+    },
+    cartData: {
+        type: Object
+    },
+    date: {
+        type: Date,
+        default: Date.now,
+    }
+});
+
+// Creating Endpoint for registering the user
+app.post("/signup", async (req, res) => {
+    // Check if user exists
+    let check = await Users.findOne({ email: req.body.email });
+    if (check) {
+        return (
+            res.status(400)
+                .json({ success: false, errors: "Existing user found with same email" })
+        )
+    }
+
+    // Create a empty cart for new user
+    let cart = {};
+    for (let i = 0; i < 300; i++) {
+        cart[i] = 0;
+    }
+
+    // Create a new user
+    const user = new Users({
+        name: req.body.username,
+        email: req.body.email,
+        password: req.body.password,
+        cartData: cart,
+    });
+
+    await user.save();
+
+    // Create new id for token
+    const data = {
+        user: {
+            id: user.id
+        }
+    }
+
+    // Set token available for the user
+    const token = jwt.sign(data, process.env.JWT_SECRET);
+    res.json({ success: true, token });
 });
 
 app.listen(port, (err) => {
