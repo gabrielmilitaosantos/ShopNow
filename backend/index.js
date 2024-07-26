@@ -117,7 +117,6 @@ app.post("/removeproduct", async (req, res) => {
 // Getting all products
 app.get("/allproducts", async (req, res) => {
     let products = await Product.find({});
-    // console.log("All Products Fetched");
     res.send(products);
 });
 
@@ -240,22 +239,20 @@ app.post("/addtocart", fetchUser, async (req, res) => {
     let userData = await Users.findOne({ _id: req.user.id });
     userData.cartData[req.body.itemId] += 1;
     await Users.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData })
-    res.send("Added")
+    res.json({ message: "Added" })
 });
 
 // Endpoint for remove products from cartdata
 app.post("/removefromcart", fetchUser, async (req, res) => {
-    // console.log("Removed", req.body.itemId);
     let userData = await Users.findOne({ _id: req.user.id });
     if (userData.cartData[req.body.itemId] > 0)
         userData.cartData[req.body.itemId] -= 1;
     await Users.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData })
-    res.send("Removed")
+    res.json({ message: "Removed" })
 });
 
 // Endpoint for get cartdata from database and display in frontend
 app.post("/getcart", fetchUser, async (req, res) => {
-    // console.log("GetCart");
     let userData = await Users.findOne({ _id: req.user.id })
     res.json(userData.cartData);
 });
