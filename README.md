@@ -59,6 +59,18 @@ MongoDB Atlas for the database, and includes an Admin page for managing the plat
 
 4. Start the backend server
     - npm start
+  
+#### Admin Setup
+
+1. Install admin dependencies:
+   (in bash or terminal)
+   - cd admin
+   - npm install
+
+2. Start the admin server:
+
+    - npm run dev
+    - available on localhost:5173
 
 ### Frontend Setup
 
